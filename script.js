@@ -22,4 +22,10 @@ function playRound(playerSelection, computerSelection) {
 
     inputUser();
     getComputerChoice();
+
+
+    // Tie
+    if (playerSelection === computerSelection) {
+        return("Its a tie! Play again!")
+    }
 }
