@@ -1,29 +1,16 @@
 let userScore = 0;
 let computerScore = 0;
-let playerSelection = inputUser();
-let computerSelection = getComputerChoice();
 
-function getComputerChoice() {
+const choices = ["rock", "paper", "scissors"];
+
+function computerPlay() {
     // computer chooses all of the three choices in random
-    let choices = ["rock", "paper", "scissors"];
-    let getRandomChoices = choices[Math.floor(Math.random() * choices.length)];
-    return choices[getRandomChoices];
-}
-
-function inputUser() {
-    // user input type
-    let UserChoice = prompt(
-        "Please use only paper, rock or scissors to play: ",
-    ).toLowerCase();
-    return UserChoice;
+    return choices[~~(Math.random() * choices.length)];
 }
 
 function playRound(playerSelection, computerSelection) {
     // Rounds of the game
     // function that will randomly return either rock paper or scissors in console log
-
-    console.log(`You selected: "${playerSelection}"`);
-    console.log(`Computer selected: "${computerSelection}"`);
 
     // Tie
     if (playerSelection === computerSelection) {
@@ -65,20 +52,27 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-function game(playerChoice) {
+function game(playerSelect) {
     //play the game for five rounds
-    let player = playerChoice;
-    let computer = getComputerChoice;
+    let playerSelection = capitalize(playerSelect);
+    let computerSelection = computerPlay;
 
     // Plays one a round game
-    playRound(player, computer);
+    playRound(playerSelection, computerSelection);
 
     // Evaluates rounds scores
     if (userScore === 5) {
         console.log("WINNER!");
-    } else if (computerScore == 5) {
+    } else if (computerScore === 5) {
         console.log("The computer has defeated you!");
     }
+}
+
+function capitalize(string) {
+    return (
+        string.toLowerCase().charAt(0).toUpperCase() +
+        string.toLowerCase().slice(1)
+    );
 }
 
 game();
