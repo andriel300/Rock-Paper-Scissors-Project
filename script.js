@@ -5,11 +5,21 @@ let playerSelection = inputUser();
 let computerSelection = getComputerChoice();
 
 function getComputerChoice() {
+    // computer chooses all of the three choices in random
     let random = choices[Math.floor(Math.random() * choices.length)];
     return random;
 }
 
 function inputUser(){
-    let UserChoice = prompt("Please use only Paper, rock or scissors to play: ").toLowerCase();
+    // user input type
+    let UserChoice = prompt("Please use only paper, rock or scissors to play: ").toLowerCase();
     return UserChoice;
+}
+
+function playRound(playerSelection, computerSelection) {
+    // Rounds of the game
+    // function that will randomly return either rock paper or scissors in console log
+
+    inputUser();
+    getComputerChoice();
 }
