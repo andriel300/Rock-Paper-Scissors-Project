@@ -1,4 +1,3 @@
-let choices = ["rock", "paper", "scissors"];
 let userScore = 0;
 let computerScore = 0;
 let playerSelection = inputUser();
@@ -6,8 +5,9 @@ let computerSelection = getComputerChoice();
 
 function getComputerChoice() {
     // computer chooses all of the three choices in random
-    let random = choices[Math.floor(Math.random() * choices.length)];
-    return random;
+    let choices = ["rock", "paper", "scissors"];
+    let getRandomChoices = choices[Math.floor(Math.random() * choices.length)];
+    return choices[getRandomChoices];
 }
 
 function inputUser() {
@@ -64,3 +64,21 @@ function playRound(playerSelection, computerSelection) {
         return "You lose! Scissors beats paper!";
     }
 }
+
+function game(playerChoice) {
+    //play the game for five rounds
+    let player = playerChoice;
+    let computer = getComputerChoice;
+
+    // Plays one a round game
+    playRound(player, computer);
+
+    // Evaluates rounds scores
+    if (userScore === 5) {
+        console.log("WINNER!");
+    } else if (computerScore == 5) {
+        console.log("The computer has defeated you!");
+    }
+}
+
+game();
