@@ -1,12 +1,14 @@
 let userScore = 0;
 let computerScore = 0;
 
-const choices = ["rock", "paper", "scissors"];
+const computerPlay = () => {
+    const arrayOfChoices = ["rock", "paper", "scissors"];
+    const randomNum = Math.floor(Math.random() * 3);
+    const compChoices = arrayOfChoices[randomNum];
+    return compChoices;
+};
 
-function computerPlay() {
-    // computer chooses all of the three choices in random
-    return choices[~~(Math.random() * choices.length)];
-}
+console.log(computerPlay)
 
 function playRound(playerSelection, computerSelection) {
     // Rounds of the game
@@ -40,6 +42,7 @@ function playRound(playerSelection, computerSelection) {
         computerScore++;
         return "You lose! Rock beats Scissors!";
     }
+
     // Rock beats Scissors 5
     else if (playerSelection === "rock" && computerSelection === "paper") {
         computerScore++;
@@ -51,28 +54,3 @@ function playRound(playerSelection, computerSelection) {
         return "You lose! Scissors beats paper!";
     }
 }
-
-function game(playerSelect) {
-    //play the game for five rounds
-    let playerSelection = capitalize(playerSelect);
-    let computerSelection = computerPlay;
-
-    // Plays one a round game
-    playRound(playerSelection, computerSelection);
-
-    // Evaluates rounds scores
-    if (userScore === 5) {
-        console.log("WINNER!");
-    } else if (computerScore === 5) {
-        console.log("The computer has defeated you!");
-    }
-}
-
-function capitalize(string) {
-    return (
-        string.toLowerCase().charAt(0).toUpperCase() +
-        string.toLowerCase().slice(1)
-    );
-}
-
-game();
