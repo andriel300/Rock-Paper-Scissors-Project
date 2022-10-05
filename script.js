@@ -8,12 +8,9 @@ const computerPlay = () => {
     return compChoices;
 };
 
-console.log(computerPlay)
-
-function playRound(playerSelection, computerSelection) {
+const playRound = (playerSelection, computerSelection) => {
     // Rounds of the game
     // function that will randomly return either rock paper or scissors in console log
-
     // Tie
     if (playerSelection === computerSelection) {
         return "Its a tie! Play again!";
@@ -21,6 +18,7 @@ function playRound(playerSelection, computerSelection) {
 
     // Paper beats Rock 1
     else if (playerSelection === "paper" && computerSelection === "rock") {
+        // userScore = userScore + 1, userScore--, userScore = userScore - 1
         userScore++;
         return "You win! Paper beats rock!";
     }
@@ -53,4 +51,25 @@ function playRound(playerSelection, computerSelection) {
         computerScore++;
         return "You lose! Scissors beats paper!";
     }
-}
+};
+
+const game = () => {
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = prompt(
+            "Choose what to throw",
+            "Rock, Paper, Scissors",
+        ).toLowerCase();
+        const computerSelection = computerPlay();
+        console.log('1 ', playRound(playerSelection, computerSelection));
+    }
+
+    if (userScore > computerScore) {
+        return " You beat the Computer! Very Good Man!";
+    } else if (userScore < computerScore) {
+        return "You lose by the Computer! need more practice!";
+    } else {
+        return "You Tied with the computer!";
+    }
+};
+
+console.log(game());
