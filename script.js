@@ -13,7 +13,7 @@ const playRound = (playerSelection, computerSelection) => {
     // function that will randomly return either rock paper or scissors in console log
     // Tie
     if (playerSelection === computerSelection) {
-        return "Its a tie! Play again!";
+        return `Its a tie! You both picked ${playerSelection}! Play again!`;
     }
 
     // Paper beats Rock 1
@@ -60,7 +60,7 @@ const game = () => {
             "Rock, Paper, Scissors",
         ).toLowerCase();
         const computerSelection = computerPlay();
-        console.log('1 ', playRound(playerSelection, computerSelection));
+        console.log("1 ", playRound(playerSelection, computerSelection));
     }
 
     if (userScore > computerScore) {
