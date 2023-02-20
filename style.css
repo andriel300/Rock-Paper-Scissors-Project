@@ -17,7 +17,7 @@
 */
 html,
 body {
-  height: 100%;
+  height: 100vh;
 }
 /*
   Typographic tweaks!
@@ -27,6 +27,10 @@ body {
 body {
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
+  font: 100% / 1.5 Raleway, sans-serif;
+  color: hsl(230, 100%, 95%);
+  background: linear-gradient(135deg, hsl(230, 40%, 12%), hsl(230, 20%, 7%));
+  height: 100vh;
 }
 /*
   6. Improve media defaults
@@ -95,10 +99,10 @@ h6 {
   display: inline-block;
   letter-spacing: 0.05rem;
   font-weight: 700;
-  font-size: 17px;
+  font-size: 2.75rem;
   border-radius: 500px;
   overflow: hidden;
-  background: #66ff66;
+  background: #0093e9;
   color: ghostwhite;
 }
 
@@ -106,6 +110,7 @@ h6 {
   position: relative;
   z-index: 10;
   transition: color 0.4s;
+  animation: lights 5s 750ms linear infinite;
 }
 
 .btn:hover span {
@@ -142,8 +147,30 @@ h6 {
   margin-top: 2rem;
 }
 
+@import url('https://fonts.googleapis.com/css?family=Source+Sans+Pro');
+
 .score p {
   margin: 0;
+  background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 4vw;
+  font-family: 'Source Sans Pro', sans-serif;
+  animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+}
+@keyframes reveal {
+  80% {
+    letter-spacing: 8px;
+  }
+  100% {
+    background-size: 300% 300%;
+  }
+}
+@keyframes glow {
+  40% {
+    text-shadow: 0 0 8px #fff;
+  }
 }
 
 .score span {
@@ -154,6 +181,18 @@ h6 {
   margin-top: 2rem;
   text-align: center;
 }
+
+.result p {
+  margin: 0;
+  background: 50% 100% / 50% 50% no-repeat radial-gradient(ellipse at bottom, #fff, transparent, transparent);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 4vw;
+  font-family: 'Source Sans Pro', sans-serif;
+  animation: reveal 3000ms ease-in-out forwards 200ms, glow 2500ms linear infinite 2000ms;
+}
+
 /* Footer */
 .sticky-footer {
   display: flex;
@@ -164,8 +203,51 @@ h6 {
 .sticky-footer__header,
 .sticky-footer__footer {
   flex-shrink: 0;
-  background-color: #0093e9;
-  background-image: linear-gradient(160deg, #0093e9 0%, #80d0c7 100%);
+  background-image: radial-gradient(circle 610px at 5.2% 51.6%, rgba(5, 8, 114, 1) 0%, rgba(7, 3, 53, 1) 97.5%);
+}
+.header-title {
+  display: flex;
+  justify-content: center;
+  color: white;
+  padding: 1rem;
+}
+@keyframes lights {
+  0% {
+    color: hsl(230, 40%, 80%);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.2), 0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      -1em -0.125em 0.5em hsla(40, 100%, 60%, 0), 1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }
+
+  30% {
+    color: hsl(230, 80%, 90%);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.5), 0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      -0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2), 0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+
+  40% {
+    color: hsl(230, 100%, 95%);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.5), 0 0 0.125em hsla(320, 100%, 90%, 0.5),
+      -0.25em -0.125em 0.125em hsla(40, 100%, 60%, 0.2), 0.25em 0.125em 0.125em hsla(200, 100%, 60%, 0.4);
+  }
+
+  70% {
+    color: hsl(230, 80%, 90%);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.5), 0 0 0.125em hsla(320, 100%, 60%, 0.5),
+      0.5em -0.125em 0.25em hsla(40, 100%, 60%, 0.2), -0.5em 0.125em 0.25em hsla(200, 100%, 60%, 0.4);
+  }
+
+  100% {
+    color: hsl(230, 40%, 80%);
+    text-shadow: 0 0 1em hsla(320, 100%, 50%, 0.2), 0 0 0.125em hsla(320, 100%, 60%, 0.3),
+      1em -0.125em 0.5em hsla(40, 100%, 60%, 0), -1em 0.125em 0.5em hsla(200, 100%, 60%, 0);
+  }
+}
+
+.sticky-footer__header h1 {
+  margin: auto;
+  font-size: 3.5rem;
+  font-weight: 300;
+  animation: lights 5s 750ms linear infinite;
 }
 
 .sticky-footer__main {
@@ -175,6 +257,6 @@ h6 {
   justify-content: center;
   align-items: center;
   height: 100%;
-  background-color: #8bc6ec;
-  background-image: linear-gradient(135deg, #8bc6ec 0%, #9599e2 100%);
+  color: ghostwhite;
+  background-image: radial-gradient(circle 610px at 5.2% 51.6%, rgba(5, 8, 114, 1) 0%, rgba(7, 3, 53, 1) 97.5%);
 }

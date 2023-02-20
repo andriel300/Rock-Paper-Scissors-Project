@@ -122,13 +122,7 @@ const endGame = (result) => {
       }
     });
 
-    // create message element
-    const newMessageEl = document.createElement('p');
-    newMessageEl.id = 'message';
-    newMessageEl.textContent = 'Do you want to play again?';
-
     // display the play again button and message
     resultEl.after(newConfirmBtn);
-    resultEl.after(newMessageEl);
   }
 };
