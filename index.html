@@ -1,13 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
     <title>Rock Paper Scissors</title>
-</head>
-<body>
+  </head>
+  <body>
+    <div class="sticky-footer">
+      <header class="sticky-footer__header">Header</header>
+      <main class="sticky-footer__main">
+        <div class="game">
+          <div class="choices">
+            <button class="btn" id="rock"><span>Rock✊</span></button>
+            <button class="btn" id="paper"><span>Paper✋</span></button>
+            <button class="btn" id="scissors"><span>Scissors✌</span></button>
+          </div>
+          <div class="score">
+            <p>Player Score: <span id="player-score">0</span></p>
+            <p>Computer Score: <span id="computer-score">0</span></p>
+          </div>
+          <div class="result">
+            <button id="confirm" style="display: none">Confirm</button>
+            <p>Make your move!</p>
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="sticky-footer__footer">Footer</footer>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>

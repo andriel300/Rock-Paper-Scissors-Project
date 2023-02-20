@@ -1,72 +1,134 @@
-let userScore = 0;
+// get elements from the DOM
+const rockBtn = document.querySelector('#rock');
+const paperBtn = document.querySelector('#paper');
+const scissorsBtn = document.querySelector('#scissors');
+const playerScoreEl = document.querySelector('#player-score');
+const computerScoreEl = document.querySelector('#computer-score');
+const resultEl = document.querySelector('.result');
+const confirmBtn = document.querySelector('#confirm');
+const messageEl = document.createElement('p');
+
+// set initial scores
+let playerScore = 0;
 let computerScore = 0;
 
+// add event listeners to the buttons
+rockBtn.addEventListener('click', () => {
+  playRound('rock');
+});
+
+paperBtn.addEventListener('click', () => {
+  playRound('paper');
+});
+
+scissorsBtn.addEventListener('click', () => {
+  playRound('scissors');
+});
+
+// play a round of the game
+const playRound = (playerSelection) => {
+  if (playerScore >= 5 || computerScore >= 5) {
+    return;
+  }
+
+  const computerSelection = computerPlay();
+  const result = getResult(playerSelection, computerSelection);
+
+  // Update the score and result displays
+  if (result === 'win') {
+    playerScore++;
+    playerScoreEl.textContent = playerScore;
+  } else if (result === 'lose') {
+    computerScore++;
+    computerScoreEl.textContent = computerScore;
+  }
+  resultEl.textContent = `You ${result}! ${playerSelection} ${getVerb(result)} ${computerSelection}.`;
+
+  // check if the game is over
+  if (playerScore >= 5 || computerScore >= 5) {
+    endGame(playerScore >= 5 ? 'win' : 'lose');
+  }
+};
+
+// get a random selection for the computer
 const computerPlay = () => {
-  const arrayOfChoices = ['rock', 'paper', 'scissors'];
-  const randomNum = Math.floor(Math.random() * 3);
-  const compChoices = arrayOfChoices[randomNum];
-  return compChoices;
+  const choices = ['rock', 'paper', 'scissors'];
+  const randomIndex = Math.floor(Math.random() * choices.length);
+  return choices[randomIndex];
 };
 
-const playRound = (playerSelection, computerSelection) => {
-  // Rounds of the game
-  // function that will randomly return either rock paper or scissors in console log
-  // Tie
+// get the result of a round
+const getResult = (playerSelection, computerSelection) => {
   if (playerSelection === computerSelection) {
-    return `Its a tie! You both picked ${playerSelection}! Play again!`;
-  }
-
-  // Paper beats Rock 1
-  else if (playerSelection === 'paper' && computerSelection === 'rock') {
-    // userScore = userScore + 1, userScore--, userScore = userScore - 1
-    userScore++;
-    return 'You win! Paper beats rock!';
-  }
-
-  // Rock beats Scissors 2
-  else if (playerSelection === 'rock' && computerSelection === 'scissors') {
-    userScore++;
-    return 'You win! Rock beats Scissors!';
-  }
-
-  // Scissors beats Paper 3
-  else if (playerSelection === 'scissors' && computerSelection === 'paper') {
-    userScore++;
-    return 'You win! Scissors beats paper!';
-  }
-
-  // Rock beats Scissors 4
-  else if (playerSelection === 'scissors' && computerSelection === 'rock') {
-    computerScore++;
-    return 'You lose! Rock beats Scissors!';
-  }
-
-  // Rock beats Scissors 5
-  else if (playerSelection === 'rock' && computerSelection === 'paper') {
-    computerScore++;
-    return 'You lose! Paper beats rock!';
-  }
-  // Rock beats Scissors 6
-  else if (playerSelection === 'paper' && computerSelection === 'scissors') {
-    computerScore++;
-    return 'You lose! Scissors beats paper!';
-  }
-};
-
-const game = () => {
-  for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt('Choose what to throw', 'Rock, Paper, Scissors').toLowerCase();
-    const computerSelection = computerPlay();
-    console.log('1 ', playRound(playerSelection, computerSelection));
-  }
-
-  if (userScore > computerScore) {
-    return ' You beat the Computer! Very Good Man!';
-  } else if (userScore < computerScore) {
-    return 'You lose by the Computer! need more practice!';
+    return 'tie';
+  } else if (
+    (playerSelection === 'rock' && computerSelection === 'scissors') ||
+    (playerSelection === 'paper' && computerSelection === 'rock') ||
+    (playerSelection === 'scissors' && computerSelection === 'paper')
+  ) {
+    return 'win';
   } else {
-    return 'You Tied with the computer!';
+    return 'lose';
   }
 };
 
-console.log(game());
+// get the correct verb for the result
+const getVerb = (result) => {
+  if (result === 'win') {
+    return 'beats';
+  } else if (result === 'lose') {
+    return 'loses to';
+  } else {
+    return 'ties with';
+  }
+};
+
+const endGame = (result) => {
+  let message;
+  if (result === 'win') {
+    message = 'Congratulations! You won the game!';
+  } else {
+    message = 'You lost the game. Better luck next time!';
+  }
+  resultEl.textContent = message;
+
+  // check if the button and message elements already exist
+  const confirmBtn = document.querySelector('#confirm');
+  const messageEl = document.querySelector('#message');
+  if (!confirmBtn && !messageEl) {
+    // create a new button to play again
+    const newConfirmBtn = document.createElement('button');
+    newConfirmBtn.id = 'confirm';
+    newConfirmBtn.textContent = 'Play Again';
+
+    // add event listener to the button
+    newConfirmBtn.addEventListener('click', () => {
+      // reset the scores and update the score displays
+      playerScore = 0;
+      computerScore = 0;
+      playerScoreEl.textContent = '0';
+      computerScoreEl.textContent = '0';
+      resultEl.textContent = '';
+
+      // reset the result display
+      resultEl.textContent = 'Make your selection to start playing!';
+
+      // remove the button and message elements;
+      if (confirmBtn) {
+        confirmBtn.remove();
+      }
+      if (messageEl) {
+        messageEl.remove();
+      }
+    });
+
+    // create message element
+    const newMessageEl = document.createElement('p');
+    newMessageEl.id = 'message';
+    newMessageEl.textContent = 'Do you want to play again?';
+
+    // display the play again button and message
+    resultEl.after(newConfirmBtn);
+    resultEl.after(newMessageEl);
+  }
+};
