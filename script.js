@@ -108,10 +108,6 @@ const endGame = (result) => {
       computerScore = 0;
       playerScoreEl.textContent = '0';
       computerScoreEl.textContent = '0';
-      resultEl.textContent = '';
-
-      // reset the result display
-      resultEl.textContent = 'Make your selection to start playing!';
 
       // remove the button and message elements;
       if (confirmBtn) {
@@ -120,6 +116,8 @@ const endGame = (result) => {
       if (messageEl) {
         messageEl.remove();
       }
+      // remove the play again button
+      newConfirmBtn.remove();
     });
 
     // display the play again button and message

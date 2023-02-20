@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="style.css" />
     <title>Rock Paper Scissors</title>
+    <link rel="shortcut icon" href="img/favicon.png" type="image/x-icon" />
   </head>
   <body>
     <div class="sticky-footer">
@@ -15,9 +16,9 @@
       <main class="sticky-footer__main">
         <div class="game">
           <div class="choices">
-            <button class="btn" id="rock"><span>Rock✊</span></button>
-            <button class="btn" id="paper"><span>Paper✋</span></button>
-            <button class="btn" id="scissors"><span>Scissors✌</span></button>
+            <button class="btn" id="rock"><span>Rock</span><span class="emoji">✊</span></button>
+            <button class="btn" id="paper"><span>Paper</span><span class="emoji2">✋</span></button>
+            <button class="btn" id="scissors"><span>Scissors</span><span class="emoji3">✌</span></button>
           </div>
           <div class="score">
             <p>Player Score: <span id="player-score">0</span></p>
@@ -30,7 +31,13 @@
         </div>
       </main>
     </div>
-    <footer class="sticky-footer__footer">Footer</footer>
+    <footer class="sticky-footer__footer">
+      <p>&copy; 2023 Andriel. All rights reserved.</p>
+      <div class="footer-github">
+        <p>My GitHub Profile</p>
+        <a href="https://github.com/andriel300"> <img src="img/github.png" alt="GitHub Logo" /></a>
+      </div>
+    </footer>
     <script src="script.js"></script>
   </body>
 </html>
